@@ -33,7 +33,7 @@ You can include related data from multiple relationships in a single query.
 
 ### Including multiple levels
 
-You can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method. The following example loads all blogs, their related posts, and the author of each post.
+eYou can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method. The following example loads all blogs, their related posts, and the author of each post.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
 
@@ -43,7 +43,7 @@ You can chain multiple calls to `ThenInclude` to continue including further leve
 
 You can combine all of this to include related data from multiple levels and multiple roots in the same query.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
+T[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
 
 You may want to include multiple related entities for one of the entities that is being included. For example, when querying `Blog`s, you include `Posts` and then want to include both the `Author` and `Tags` of the `Posts`. To do this, you need to specify each include path starting at the root. For example, `Blog -> Posts -> Author` and `Blog -> Posts -> Tags`. This does not mean you will get redundant joins, in most cases EF will consolidate the joins when generating SQL.
 
@@ -69,6 +69,8 @@ By default, EF Core will log a warning when include operators are ignored. See [
 You can explicitly load a navigation property via the `DbContext.Entry(...)` API.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#Eager)]
+
+You can also explicitly load a navigation property with a seperate query that returns the related entities.  If change tracking is enables, then when loading an entity EF will set the navigation properties of the newly-loaded entitiy to refer to any entities already loaded, and set the navigation properties of the already-loaded entities to refer to the newly-loaded entity.
 
 ### Querying related entities
 
